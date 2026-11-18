@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { addToCart, checkout, createCart, getOrderDetails, getOrders, viewCart } from "../controllers/cartController.js";
+import { requireAuth } from "../middleware/auth.js";
+const router = Router(); router.use(requireAuth);
+router.post("/create", createCart);
+router.post("/add", addToCart);
+router.get("/:cartId", viewCart);
+router.post("/checkout/:cartId", checkout);
+export const orderRouter = Router(); orderRouter.use(requireAuth);
+orderRouter.get("/", getOrders); orderRouter.get("/:orderId", getOrderDetails);
+export default router;

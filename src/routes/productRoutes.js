@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { createProducts, deleteProduct, getProducts, restoreProduct, updateProduct } from "../controllers/productController.js";
+import { requireAuth } from "../middleware/auth.js";
+const router = Router();
+router.use(requireAuth);
+router.post("/", createProducts);
+router.get("/", getProducts);
+router.put("/restore/:productId", restoreProduct);
+router.put("/:productId", updateProduct);
+router.delete("/:productId", deleteProduct);
+export default router;
